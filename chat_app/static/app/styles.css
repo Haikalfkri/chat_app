@@ -1,0 +1,18 @@
+/* Custom styles for the navbar */
+.navbar {
+    font-size: 18px; /* Adjust the font size as needed */
+    background-color: #FFFFFF;
+}
+      
+body {
+    background-color: #f3f0f0;
+}
+
+.navbar-brand,
+.nav-link {
+    font-family: "Open Sans", sans-serif;
+    /* Replace 'YourChosenFont' with your preferred font */
+    font-size: 18px; /* Adjust the font size as needed */
+    font-weight: bold;
+    color: black;
+}
