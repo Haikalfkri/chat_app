@@ -15,7 +15,16 @@
     
     <div class="container mt-5">
         <h1 class="mb-3">Login</h1>
-        <form>
+
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" id="username" class="form-control" name="username" placeholder="Username">

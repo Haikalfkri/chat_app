@@ -5,6 +5,45 @@
 
 {% block content %}
 
-    
+    <div class="card" data-bs-toggle="modal" data-bs-target="#post">
+        <div class="card-body">
+            <div class="card-title" style="font-weight: 600; color:rgb(153, 147, 147); font-size: 20px;">Write Something</div>
+        </div>
+    </div>
 
+
+    <!-- Modal for posting -->
+<!-- Your modal with custom styles -->
+<div class="modal fade" id="post" style="transition: all 0.3s;">
+    <div class="modal-dialog modal-lg"> <!-- Increase width by using modal-lg -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Haikal Fikri Posting on this app</h5>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <!-- Add a wider input without border -->
+                    <input type="text" class="form-control border-0" placeholder="Write something...">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#post").modal({
+            show: false, // To prevent the modal from showing when the page loads
+        });
+
+        // Show the modal when clicking a button or trigger
+        $("#yourButtonOrTrigger").click(function () {
+            $("#post").modal('show');
+        });
+    });
+</script>
 {% endblock %}
