@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Post
-from .forms import PostForm
+from .models import Post, Comments
+from .forms import PostForm, CommentForm
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
-from django.db.models import F
 from django.http import JsonResponse
 
 # Create your views here.
@@ -56,5 +55,23 @@ def LikePost(request):
         return JsonResponse({'error': 'Invalid request method'})
     
     
-def PostComments(request):
-    pass
+def PostComments(request, id):
+    post = Post.objects.filter(id=id)
+    comment = Comments.objects.all()
+
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            return redirect('post-comment')
+    else:
+        form = CommentForm()
+    
+    context = {
+        'posts': post,
+        'comment': comment,
+        'form': form,
+    }
+    
+    return render(request, "app/user/comments.html", context)
