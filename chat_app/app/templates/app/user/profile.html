@@ -8,20 +8,37 @@
     <div class="row">
         <div class="col-md-3">
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">Profile</a>
+                <a href="{% url 'user-profile' %}" class="list-group-item list-group-item-action">Profile</a>
                 <a href="#" class="list-group-item list-group-item-action">Change Password</a>
             </div>
         </div>
 
         <div class="col-md-9">
             <div class="card">
-                <div class="card-body">
-                    <h2 class="mb-5">Profile</h2>
-                    <div>
-                        <img src="{% static 'images/profileAvatar.jpg' %}" alt="Profile Image" class="rounded-circle mr-3" id="profile-image">
-                        <a href="#" id="change-image">Change Image</a>
+                <form method="POST">
+                    {% csrf_token %}
+                
+                    <div class="card-body text-start">
+                        <h3 class="mb-5">Profile</h3>
+
+                        <div>
+                            <img src="{% static 'images/profileAvatar.jpg' %}" alt="Profile Image" class="rounded-circle mr-3" id="profile-image">
+                            <a href="#" id="change-image">Change Image</a>
+                        </div>
+
+                        <div class="mb-3 mt-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="Username">
+                          </div>
+
+                        <div class="mb-3">
+                            <label for="bio" class="form-label">Bio</label>
+                            <textarea class="form-control" id="bio" rows="3" placeholder="type something..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-3 justify-content-end">Save</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
