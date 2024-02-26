@@ -73,7 +73,7 @@
                     <span>{{ post.liked_by.count }}</span>
                 </a>
 
-                <a href="{% url 'post-comment' post.id %}" class="btn-comment" href="" id="comments_link"><i class="fa-regular fa-comment" id="comments_icon"></i><span>20</span></a>
+                <a href="{% url 'post-comment' post.id %}" class="btn-comment" href="" id="comments_link"><i class="fa-regular fa-comment" id="comments_icon"></i><span>{{ post.comments.count }}</span></a>
             </div>
         </div>
     </div>
