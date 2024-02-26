@@ -38,19 +38,24 @@
 
     {% for post in posts %}
     <div class="card mt-4">
-        <div class="card-header d-flex align-items-center">
-            <!-- Circular profile photo -->
-            <img src="{% static 'images/haikal.jpeg' %}" alt="Profile Image" class="rounded-circle mr-3" id="user_image_post">
-    
-            <div class="ml-4" style="margin-left: 10px;">
-                <!-- User name -->
-                <h5 class="mb-0">{{ post.user.username }}</h5>
-                <!-- Date posted -->
-                <small class="text-muted">{{ post.created }}</small>
+        <div class="card-header d-flex align-items-center justify-content-between">
+            <div class="ml-4 d-flex">
+                <!-- Circular profile photo -->
+                <img src="{% static 'images/haikal.jpeg' %}" alt="Profile Image" class="rounded-circle mr-3" id="user_image_post">
+
+                <div style="margin-left: 10px;">
+                    <!-- User name -->
+                    <h5 class="mb-0">{{ post.user.username }}</h5>
+                    <!-- Date posted -->
+                    <small class="text-muted">{{ post.created }}</small>
+                </div>
             </div>
 
             <div class="ml-auto">
+                {% if post.user.id == request.user.id %}
                 <a href="{% url 'delete-post' post.id %}" class="btn btn-danger">Delete</a>
+                {% else %}
+                {% endif %}
             </div>
         </div>
 
@@ -65,7 +70,7 @@
                     {% else %}
                         <img src="{% static 'images/whitelike.png' %}" id="whitelike-image">
                     {% endif %}
-                    <span id="like_count">{{ post.liked_by.count }}</span>
+                    <span>{{ post.liked_by.count }}</span>
                 </a>
 
                 <a href="#" class="btn-comment" href="" id="comments_link"><i class="fa-regular fa-comment" id="comments_icon"></i><span>20</span></a>
@@ -83,15 +88,15 @@
                 method: "POST",
                 url: "{% url 'post-like' %}",
                 data: {post_id:post_id, csrfmiddlewaretoken:window.CSRF_TOKEN},
-                success: function(json) {
-                    document.getElementById('like_count').innerHTML = json['result']
-                    console.log(json)
+                success: function(data) {
+                    console.log("Success", data);
+                    location.reload();
+                },
+                error: function(errror) {
+                    console.log("Error", error);
                 }
             });
-            window.location.href="http://127.0.0.1:8000/post/"
         });
-
-
     </script>
 
 {% endblock %}

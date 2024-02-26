@@ -49,7 +49,12 @@ def LikePost(request):
         else:
             post.liked_by.add(request.user)
             post.save()
+            
         
-        return JsonResponse({'result': post.like_count})
+        return redirect('post')
     else:
         return JsonResponse({'error': 'Invalid request method'})
+    
+    
+def PostComments(request):
+    pass
