@@ -85,3 +85,9 @@ def PostComments(request, id):
     }
     
     return render(request, "app/user/comments.html", context)
+
+
+
+# profile
+def UserProfile(request):
+    return render(request, "app/user/profile.html")
