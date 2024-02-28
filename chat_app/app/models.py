@@ -27,7 +27,7 @@ class UserProfile(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     body = models.TextField()
-    created = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField()
     liked_by = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="posts_liked", blank=True)
     
     class Meta:

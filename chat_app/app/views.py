@@ -4,6 +4,7 @@ from .models import Post, UserProfile
 from .forms import PostForm, CommentForm, ProfileForm, PasswordChangingForm
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
+from django.utils import timezone
 
 from django.contrib.auth.decorators import login_required
 
@@ -29,6 +30,7 @@ def UserPost(request):
         if form.is_valid():
             new_post = form.save(commit=False)
             new_post.user = request.user
+            new_post.created = timezone.now()
             new_post.save()
             return redirect('post')
     else:
@@ -55,6 +57,8 @@ def LikePost(request):
     if request.method == "POST":
         post_id = request.POST.get('post_id')
         post = get_object_or_404(Post, id=post_id)
+
+        # check if the post has never been like before
         
         if post.liked_by.filter(id=request.user.id).exists():
             post.liked_by.remove(request.user)

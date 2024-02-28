@@ -144,3 +144,6 @@ AUTH_USER_MODEL = "authentication.CustomUser"
 MEDIA_URL = "/media/"
 # media root
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+
+# time zone
+TIME_ZONE = "Asia/Jakarta"
