@@ -1,14 +1,12 @@
 from django.db import models
 from django.conf import settings
-
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+from authentication.models import CustomUser
 
 # Create your models here.
 
 # Profile Model
 class UserProfile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="profile")
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name="profile")
     bio = models.TextField()
     image = models.ImageField(upload_to="profile_images/")
     
