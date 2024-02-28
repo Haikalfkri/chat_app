@@ -11,4 +11,5 @@ urlpatterns = [
     
     # profile url
     path("profile/", views.Profile, name="user-profile"),
+    path("profile/change_password/", views.PasswordsChangeView.as_view(template_name="app/user/change_password.html"), name="change-password"),
 ]

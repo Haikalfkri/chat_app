@@ -1,13 +1,22 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from .models import Post, UserProfile
-from authentication.models import CustomUser
-from .forms import PostForm, CommentForm, ProfileForm
+from .forms import PostForm, CommentForm, ProfileForm, PasswordChangingForm
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
 from django.contrib.auth.decorators import login_required
 
+from django.contrib.auth.views import PasswordChangeView
+
 # Create your views here.
+
+# change password
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangingForm
+    success_url = reverse_lazy('change-password')
+    success_message = "Password Succesfully Change"
+
 
 # posts
 @login_required(login_url='login')
@@ -120,3 +129,7 @@ def Profile(request):
     }
 
     return render(request, "app/user/profile.html", context)
+
+
+def changePassword(request):
+    return render(request, "app/user/change_password.html")
