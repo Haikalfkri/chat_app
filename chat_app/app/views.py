@@ -88,6 +88,8 @@ def PostComments(request, id):
             new_comment.post = post
             new_comment.posted_by = logged_user
             new_comment.save()
+        
+        form = CommentForm()
     else:
         form = CommentForm()
     

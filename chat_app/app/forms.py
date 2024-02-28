@@ -25,6 +25,7 @@ class CommentForm(forms.ModelForm):
         model = Comments
         fields = ("body", )
         
+        
 
 class ProfileForm(forms.ModelForm):
     username = forms.CharField(widget=forms.TextInput(attrs={
