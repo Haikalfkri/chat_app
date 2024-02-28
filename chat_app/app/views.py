@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Post, Comments
-from .forms import PostForm, CommentForm
+from .models import Post, Comments, UserProfile
+from .forms import PostForm, CommentForm, ProfileForm
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
@@ -89,5 +89,20 @@ def PostComments(request, id):
 
 
 # profile
-def UserProfile(request):
-    return render(request, "app/user/profile.html")
+def Profile(request, username):
+    profile = UserProfile.objects.get(user=username)
+    
+    if request.method == "POST":
+        form = ProfileForm(request.POST, instance=profile, files=request.FILES)
+        
+        if form.is_valid():
+            form.save()
+            return redirect("user-profile")
+    else:
+        form = ProfileForm(instance=profile)
+        
+    context = {
+        'form': form,
+    }
+
+    return render(request, "app/user/profile.html", context)

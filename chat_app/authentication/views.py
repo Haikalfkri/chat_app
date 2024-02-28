@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from app.models import UserProfile
 
 # Create your views here.
 def UserRegister(request):
@@ -16,6 +16,7 @@ def UserRegister(request):
     
             group = Group.objects.get(name='user')
             user.groups.add(group)
+        
             
             messages.success(request, "Register Successfully!")
             return redirect('login')   

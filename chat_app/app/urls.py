@@ -10,5 +10,5 @@ urlpatterns = [
     path("post/comments/<int:id>", views.PostComments, name="post-comment"),
     
     # profile url
-    path("profile/", views.UserProfile, name="user-profile"),
+    path("profile/<str:username>", views.UserProfile, name="user-profile"),
 ]

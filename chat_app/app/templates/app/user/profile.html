@@ -23,17 +23,17 @@
 
                         <div>
                             <img src="{% static 'images/profileAvatar.jpg' %}" alt="Profile Image" class="rounded-circle mr-3" id="profile-image">
-                            <a href="#" id="change-image">Change Image</a>
+                            {{ form.image }}
                         </div>
 
                         <div class="mb-3 mt-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" placeholder="Username">
+                            {{ form.user }}
                           </div>
 
                         <div class="mb-3">
                             <label for="bio" class="form-label">Bio</label>
-                            <textarea class="form-control" id="bio" rows="3" placeholder="type something..."></textarea>
+                            {{ form.bio }}
                         </div>
 
                         <button type="submit" class="btn btn-primary mt-3 justify-content-end">Save</button>

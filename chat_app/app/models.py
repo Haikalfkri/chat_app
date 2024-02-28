@@ -1,11 +1,14 @@
 from django.db import models
 from django.conf import settings
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 # Create your models here.
 
 # Profile Model
 class UserProfile(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="profile")
     bio = models.TextField()
     image = models.ImageField(upload_to="profile_images/")
     
@@ -20,6 +23,7 @@ class UserProfile(models.Model):
             url = ''
         
         return url
+
 
 # Post Model
 class Post(models.Model):
@@ -55,3 +59,4 @@ class Comments(models.Model):
         
     def __str__(self):
         return self.body
+    
