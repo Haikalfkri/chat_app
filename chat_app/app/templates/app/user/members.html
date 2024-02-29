@@ -11,7 +11,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-1">
-                    {% if request.user.profile.image %}
+                    {% if user.profile.image %}
                         <img src="{{ user.profile.image.url }}" alt="Profile Image" class="rounded-circle mr-3" id="member-image" style="width: 50px; height: 50px;">
                     {% else %}
                         <img src="{% static 'images/profileAvatar.jpg' %}" alt="Profile Image" class="rounded-circle mr-3" id="member-image" style="width: 50px; height: 50px;">
