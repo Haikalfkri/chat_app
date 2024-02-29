@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from .models import Post, UserProfile
+from authentication.models import CustomUser
 from .forms import PostForm, CommentForm, ProfileForm, PasswordChangingForm
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
@@ -23,6 +24,7 @@ class PasswordsChangeView(PasswordChangeView):
 @login_required(login_url='login')
 def UserPost(request):
     post = Post.objects.all().order_by('-created')
+    users = CustomUser.objects.all()
     logged_user = request.user
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -40,6 +42,7 @@ def UserPost(request):
         'posts': post,
         'form': form,
         'logged_user': logged_user,
+        'users': users,
     }
     return render(request, "app/user/post.html", context)
 
@@ -139,3 +142,13 @@ def Profile(request):
 
 def changePassword(request):
     return render(request, "app/user/change_password.html")
+
+
+def Members(request):
+    user = CustomUser.objects.all().order_by("-date_joined")
+    
+    context = {
+        'users': user
+    }
+    
+    return render(request, "app/user/members.html", context)

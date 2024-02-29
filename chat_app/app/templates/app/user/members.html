@@ -1,0 +1,42 @@
+{% extends 'app/user/main.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+    <div class="card">
+        {% for user in users %}
+        {% if user.role == "user" %}
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-1">
+                    {% if request.user.profile.image %}
+                        <img src="{{ user.profile.image.url }}" alt="Profile Image" class="rounded-circle mr-3" id="member-image" style="width: 50px; height: 50px;">
+                    {% else %}
+                        <img src="{% static 'images/profileAvatar.jpg' %}" alt="Profile Image" class="rounded-circle mr-3" id="member-image" style="width: 50px; height: 50px;">
+                    {% endif %}
+                </div>
+                <div class="col-md-9">
+                    <div>
+                        <h4 class="mb-0">{{ user.username }}</h4>
+                        <p style="color: grey;">{{ user.email }}</p>
+                    </div>
+                    <p class="mb-2" style="font-size: 20px;">{{ user.profile.bio }}</p>
+                    <p style="font-size: 17px;"><i class="fa-regular fa-calendar"></i><span style="margin-left: 10px;">{{ user.date_joined }}</span></p>
+                </div>
+                <div class="col-md-2 text-right">
+                    <!-- Add your chat link here -->
+                    <a href="#" class="btn btn-secondary" style="background-color: rgb(230, 229, 229); display: flex; align-items: center; color: black; text-decoration: none; border: none; border-radius: 10px; height: 40px;">
+                        <i class="fa-regular fa-message" style="margin-left: 5px;"></i> <span style="margin-left: 10px;">Chat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        
+        {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}
