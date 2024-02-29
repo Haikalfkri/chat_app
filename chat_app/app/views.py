@@ -6,7 +6,7 @@ from .forms import PostForm, CommentForm, ProfileForm, PasswordChangingForm
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.utils import timezone
-
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.views import PasswordChangeView
@@ -146,6 +146,12 @@ def changePassword(request):
 
 def Members(request):
     user = CustomUser.objects.all().order_by("-date_joined")
+    
+    search_user = request.GET.get('search')
+    
+    if search_user:
+        user = user.filter(Q(username__icontains=search_user))
+            
     
     context = {
         'users': user
