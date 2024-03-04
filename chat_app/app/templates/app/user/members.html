@@ -30,15 +30,15 @@
                 </div>
                 <div class="col-md-9">
                     <div>
-                        <h4 class="mb-0">{{ user.username }}</h4>
+                        <h5 class="mb-0">{{ user.username }}</h5>
                         <p style="color: grey;">{{ user.email }}</p>
                     </div>
-                    <p class="mb-2" style="font-size: 20px;">{{ user.profile.bio }}</p>
-                    <p style="font-size: 17px;"><i class="fa-regular fa-calendar"></i><span style="margin-left: 10px;">{{ user.date_joined }}</span></p>
+                    <p class="mb-2" style="font-size: 18px;">{{ user.profile.bio }}</p>
+                    <p style="font-size: 17px;"><i class="fa-regular fa-calendar"></i><span style="margin-left: 10px; font-size: 15px;">{{ user.date_joined }}</span></p>
                 </div>
                 <div class="col-md-2 text-right">
                     <!-- Add your chat link here -->
-                    <a href="#" class="btn btn-secondary" style="background-color: rgb(230, 229, 229); display: flex; align-items: center; color: black; text-decoration: none; border: none; border-radius: 10px; height: 40px;">
+                    <a href="{% url 'chat' user.id %}" class="btn btn-secondary" style="background-color: rgb(230, 229, 229); display: flex; align-items: center; color: black; text-decoration: none; border: none; border-radius: 10px; height: 40px;">
                         <i class="fa-regular fa-message" style="margin-left: 5px;"></i> <span style="margin-left: 10px;">Chat</span>
                     </a>
                 </div>

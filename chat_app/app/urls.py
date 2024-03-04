@@ -15,4 +15,7 @@ urlpatterns = [
     
     # list of user
     path("members/", views.Members, name="member"),
+    
+    #chat
+    path("chat/<int:id>", views.chatPage, name="chat"),
 ]

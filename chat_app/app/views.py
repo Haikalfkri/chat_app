@@ -140,10 +140,6 @@ def Profile(request):
     return render(request, "app/user/profile.html", context)
 
 
-def changePassword(request):
-    return render(request, "app/user/change_password.html")
-
-
 def Members(request):
     user = CustomUser.objects.all().order_by("-date_joined")
     
@@ -158,3 +154,13 @@ def Members(request):
     }
     
     return render(request, "app/user/members.html", context)
+
+
+def chatPage(request, id):
+    user = CustomUser.objects.get(id=id)
+    
+    context = {
+        'user': user
+    }
+    
+    return render(request, "app/user/chat.html", context)
