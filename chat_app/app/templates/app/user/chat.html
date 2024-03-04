@@ -2,7 +2,6 @@
 
 {% load static %}
 
-
 {% block content %}
     <style>
         /* Styles for sender's message */
@@ -33,6 +32,7 @@
         }
     </style>
 
+
     <!-- Chat card -->
     <div class="card" style="background-color: rgb(235, 231, 231);">
         <div class="card-body">
@@ -62,8 +62,9 @@
                 </div>
             </form>
         </div>
-    </div>
-
-
+    </div>  
+    
+    {{ user.id|json_script:"json-username" }}
+    {{ request.user.username|json_script:"json-message-username" }}
 
 {% endblock %}

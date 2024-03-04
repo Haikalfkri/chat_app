@@ -156,8 +156,8 @@ def Members(request):
     return render(request, "app/user/members.html", context)
 
 
-def chatPage(request, id):
-    user = CustomUser.objects.get(id=id)
+def chatPage(request, username):
+    user = CustomUser.objects.get(username=username)
     
     context = {
         'user': user
