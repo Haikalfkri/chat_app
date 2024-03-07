@@ -10,8 +10,11 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth import get_user_model
 
 # Create your views here.
+
+User = get_user_model()
 
 # change password
 class PasswordsChangeView(PasswordChangeView):
@@ -157,10 +160,10 @@ def Members(request):
 
 
 def chatPage(request, username):
-    user = CustomUser.objects.get(username=username)
+    user_obj = User.objects.get(username=username)
     
     context = {
-        'user': user
+        'user': user_obj
     }
     
     return render(request, "app/user/chat.html", context)

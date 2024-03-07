@@ -17,5 +17,5 @@ urlpatterns = [
     path("members/", views.Members, name="member"),
     
     #chat
-    path("chat/<str:username>", views.chatPage, name="chat"),
+    path("<str:username>/", views.chatPage, name="chat"),
 ]
