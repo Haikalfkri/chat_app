@@ -160,7 +160,7 @@ def Members(request):
 
 
 def chatPage(request, username):
-    user_obj = User.objects.get(username=username)
+    user_obj = CustomUser.objects.get(user=username)
     
     context = {
         'user': user_obj

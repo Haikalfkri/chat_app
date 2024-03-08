@@ -18,7 +18,7 @@
     <div class="card mt-4">
 
         {% for user in users %}
-        {% if user.role == "user" %}
+        {% if user.role == "user" and user.username != request.user.username %}
         <div class="card-body">
             <div class="row">
                 <div class="col-md-1">
@@ -49,5 +49,9 @@
         {% endif %}
         {% endfor %}
     </div>
+
+    {{ user.id|json_script:"json-username" }}
+    {{ request.user.username|json_script:"json-message-username" }}
+    <script src="{% static 'js/chat.js' %}"></script>
 
 {% endblock %}
